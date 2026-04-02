@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annabel Schiøtz — Troll Stories & Children's Books</title>
+  <meta name="description" content="Discover the magical children's books of Annabel Schiøtz — colourful trolls, rainbow ducks, friendly dragons, and manycorns from the Norwegian woods.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #1a3c2a;
+      --moss: #2d6a4f;
+      --meadow: #52b788;
+      --sky: #d8f3dc;
+      --cream: #fefae0;
+      --sun: #f4a261;
+      --berry: #e76f51;
+      --dragon-red: #c1121f;
+      --troll-blue: #457b9d;
+      --indigo: #3d348b;
+      --rainbow-1: #e76f51;
+      --rainbow-2: #f4a261;
+      --rainbow-3: #e9c46a;
+      --rainbow-4: #52b788;
+      --rainbow-5: #457b9d;
+      --rainbow-6: #3d348b;
+      --rainbow-7: #9b5de5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background: var(--cream);
+      color: var(--forest);
+      overflow-x: hidden;
+    }
+
+    /* ── Decorative background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 20%, rgba(82, 183, 136, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(69, 123, 157, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(244, 162, 97, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--cream));
+    }
+
+    /* Floating trees/nature decoration */
+    .forest-scene {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      height: 200px;
+      overflow: hidden;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .tree {
+      position: absolute;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 60px solid var(--forest);
+    }
+    .tree::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -15px;
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 50px solid var(--forest);
+    }
+
+    .hero-subtitle {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--moss);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      animation: fadeUp 1s ease 0.2s both;
+    }
+
+    .hero-title {
+      font-family: 'Baloo 2', cursive, sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      animation: fadeUp 1s ease 0.4s both;
+    }
+
+    .hero-title .rainbow {
+      background: linear-gradient(
+        135deg,
+        var(--rainbow-1),
+        var(--rainbow-2),
+        var(--rainbow-3),
+        var(--rainbow-4),
+        var(--rainbow-5),
+        var(--rainbow-6),
+        var(--rainbow-7)
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-bio {
+      max-width: 560px;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--forest);
+      opacity: 0.85;
+      animation: fadeUp 1s ease 0.6s both;
+    }
+
+    .hero-cta {
+      margin-top: 2rem;
+      animation: fadeUp 1s ease 0.8s both;
+    }
+
+    .hero-cta a {
+      display: inline-block;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+      background: var(--moss);
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      box-shadow: 0 4px 20px rgba(45, 106, 79, 0.3);
+    }
+
+    .hero-cta a:hover {
+      transform: translateY(-2px);
+      background: var(--meadow);
+      box-shadow: 0 8px 30px rgba(45, 106, 79, 0.35);
+    }
+
+    /* ── Section styling ── */
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .section-label {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--moss);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Baloo 2', cursive, sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--forest);
+    }
+
+    /* ── About ── */
+    .about {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+      color: var(--forest);
+      opacity: 0.85;
+    }
+
+    .about .location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Baloo 2', cursive;
+      font-size: 0.95rem;
+      color: var(--moss);
+      background: rgba(45, 106, 79, 0.08);
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      border: 1px solid rgba(45, 106, 79, 0.15);
+    }
+
+    /* ── Book Grid ── */
+    .books-section {
+      background: linear-gradient(180deg, var(--cream) 0%, rgba(216, 243, 220, 0.3) 50%, var(--cream) 100%);
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .book-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 2px 20px rgba(26, 60, 42, 0.06);
+      border: 1px solid rgba(26, 60, 42, 0.06);
+    }
+
+    .book-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(26, 60, 42, 0.12);
+    }
+
+    .book-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .book-card:nth-child(1)::before { background: var(--troll-blue); }
+    .book-card:nth-child(2)::before { background: var(--rainbow-3); }
+    .book-card:nth-child(3)::before { background: var(--sun); }
+    .book-card:nth-child(4)::before { background: var(--rainbow-4); }
+    .book-card:nth-child(5)::before { background: var(--rainbow-7); }
+    .book-card:nth-child(6)::before { background: var(--dragon-red); }
+    .book-card:nth-child(7)::before { background: var(--berry); }
+    .book-card:nth-child(8)::before { background: var(--indigo); }
+    .book-card:nth-child(9)::before { background: var(--moss); }
+
+    .book-number {
+      font-family: 'Baloo 2', cursive;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--moss);
+      opacity: 0.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .book-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--forest);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .book-desc {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--forest);
+      opacity: 0.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .book-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .book-age {
+      font-family: 'Baloo 2', cursive;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--moss);
+      background: var(--sky);
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+    }
+
+    .book-link {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--troll-blue);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .book-link:hover {
+      color: var(--moss);
+    }
+
+    .book-link::after {
+      content: ' →';
+    }
+
+    /* ── Characters section ── */
+    .characters {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .character-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .character-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Baloo 2', cursive;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      background: white;
+      border: 2px solid;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .character-pill:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .character-pill .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Footer / CTA ── */
+    .footer-cta {
+      text-align: center;
+      padding: 4rem 1.5rem 2rem;
+    }
+
+    .footer-cta .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .footer-cta p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      opacity: 0.8;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Baloo 2', cursive;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-primary {
+      color: white;
+      background: var(--moss);
+      box-shadow: 0 4px 20px rgba(45, 106, 79, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(45, 106, 79, 0.35);
+    }
+
+    .btn-secondary {
+      color: var(--moss);
+      background: transparent;
+      border: 2px solid var(--moss);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(45, 106, 79, 0.05);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+      font-size: 0.85rem;
+      color: var(--moss);
+      opacity: 0.5;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .divider span {
+      font-size: 1.5rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: var(--moss);
+      opacity: 0.2;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .books-grid {
+        grid-template-columns: 1fr;
+      }
+      section {
+        padding: 3rem 1.25rem;
+      }
+      .hero {
+        min-height: 90vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════ HERO ═══════ -->
+  <header class="hero">
+    <div class="forest-scene">
+      <div class="tree" style="left:5%; bottom:0;"></div>
+      <div class="tree" style="left:12%; bottom:0; transform:scale(1.3);"></div>
+      <div class="tree" style="left:20%; bottom:0; transform:scale(0.8);"></div>
+      <div class="tree" style="right:8%; bottom:0; transform:scale(1.1);"></div>
+      <div class="tree" style="right:18%; bottom:0; transform:scale(1.4);"></div>
+      <div class="tree" style="right:28%; bottom:0; transform:scale(0.7);"></div>
+      <div class="tree" style="left:40%; bottom:0; transform:scale(0.9);"></div>
+      <div class="tree" style="left:55%; bottom:0; transform:scale(1.2);"></div>
+      <div class="tree" style="left:70%; bottom:0;"></div>
+    </div>
+    <p class="hero-subtitle">Children's Books from Norway</p>
+    <h1 class="hero-title">
+      The <span class="rainbow">Magical</span> World of<br>Annabel Schiøtz
+    </h1>
+    <p class="hero-bio">
+      Colourful trolls, rainbow ducks, friendly dragons, and five-horned manycorns — all discovered on walks through the Norwegian woods and turned into stories for grandchildren everywhere.
+    </p>
+    <div class="hero-cta">
+      <a href="#books">Explore the Books</a>
+    </div>
+  </header>
+
+  <!-- ═══════ ABOUT ═══════ -->
+  <section class="about fade-in">
+    <p class="section-label">About the Author</p>
+    <h2 class="section-title">Meet Annabel</h2>
+    <p>
+      Annabel Schiøtz lives in Norway with her husband, her eight grandchildren nearby, and one very fluffy dog. On her walks through the woods she photographs the troll-like trees and bushes lurking between the pines — and those discoveries have turned into a beloved series of picture books.
+    </p>
+    <p>
+      Her stories are about the adventures of a grandmother called Besti, her dog Lula, seven colourful trolls, an unhappy red dragon, a rainbow-coloured duck, and various other characters. The grandchildren, of course, wouldn't be left out.
+    </p>
+    <p>
+      All books are available in both English and Norwegian.
+    </p>
+    <div class="location-badge">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      Norway
+    </div>
+  </section>
+
+  <div class="divider"><span>🌲</span></div>
+
+  <!-- ═══════ CHARACTERS ═══════ -->
+  <section class="characters fade-in">
+    <p class="section-label">Cast of Characters</p>
+    <h2 class="section-title">Who Lives in the Woods?</h2>
+    <div class="character-row">
+      <div class="character-pill" style="border-color: var(--troll-blue);">
+        <span class="dot" style="background: var(--troll-blue);"></span> Blue Troll
+      </div>
+      <div class="character-pill" style="border-color: var(--rainbow-3);">
+        <span class="dot" style="background: var(--rainbow-3);"></span> Yellow Troll
+      </div>
+      <div class="character-pill" style="border-color: #48cae4;">
+        <span class="dot" style="background: #48cae4;"></span> Water Troll
+      </div>
+      <div class="character-pill" style="border-color: var(--dragon-red);">
+        <span class="dot" style="background: var(--dragon-red);"></span> Red Troll
+      </div>
+      <div class="character-pill" style="border-color: var(--sun);">
+        <span class="dot" style="background: var(--sun);"></span> Orange Troll
+      </div>
+      <div class="character-pill" style="border-color: var(--indigo);">
+        <span class="dot" style="background: var(--indigo);"></span> Indigo Troll
+      </div>
+      <div class="character-pill" style="border-color: var(--meadow);">
+        <span class="dot" style="background: var(--meadow);"></span> Green Troll
+      </div>
+    </div>
+    <div class="character-row" style="margin-top: 0.75rem;">
+      <div class="character-pill" style="border-color: var(--berry);">
+        <span class="dot" style="background: var(--berry);"></span> Besti (Granny)
+      </div>
+      <div class="character-pill" style="border-color: #dda15e;">
+        <span class="dot" style="background: #dda15e;"></span> Lula the Dog
+      </div>
+      <div class="character-pill" style="border-color: var(--dragon-red);">
+        <span class="dot" style="background: var(--dragon-red);"></span> Red Dragon
+      </div>
+      <div class="character-pill" style="border-color: var(--rainbow-7);">
+        <span class="dot" style="background: linear-gradient(135deg, #e76f51, #f4a261, #52b788, #457b9d, #9b5de5);"></span> Rainbow Duck
+      </div>
+      <div class="character-pill" style="border-color: #b5e2fa;">
+        <span class="dot" style="background: white; border: 2px solid #b5e2fa;"></span> The Manycorns
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span>🐉</span></div>
+
+  <!-- ═══════ BOOKS ═══════ -->
+  <section class="books-section" id="books">
+    <p class="section-label">The Library</p>
+    <h2 class="section-title">Books by Annabel</h2>
+
+    <div class="books-grid">
+
+      <div class="book-card fade-in">
+        <div class="book-number">Troll Stories · Book 1</div>
+        <h3 class="book-title">Blue Troll's Broken Berry Rod</h3>
+        <p class="book-desc">Blue Troll wakes from a nap to find his special berry picker gone. With Besti and Lula's help he sets off to find it, meeting friends and rescuing a stuck dragon along the way.</p>
+        <div class="book-meta">
+          <span class="book-age">Ages 3–6</span>
+          <a class="book-link" href="https://www.amazon.co.uk/dp/B00Q4P1AYU" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+      </div>
+
+      <div class="book-card fade-in">
+        <div class="book-number">Troll Stories · Book 2</div>
+        <h3 class="book-title">Rainbow Duck and the Burglar Birds</h3>
+        <p class="book-desc">Rainbow Duck has vanished and her nest is all torn and broken! Four trolls set off in different directions to solve the mystery and find their colourful friend.</p>
+        <div class="book-meta">
+          <span class="book-age">Ages 3–6</span>
+          <a class="book-link" href="https://www.amazon.co.uk/dp/B00U8SU0S6" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+      </div>
+
+      <div class="book-card fade-in">
+        <div class="book-number">Troll Stories · Book 3</div>
+        <h3 class="book-title">When Orange Troll Couldn't Climb Trees</h3>
+        <p class="book-desc">When Besti's scarf blows up into a tree, Orange Troll wants to help — but something once frightened her so much she no longer dares to climb. Besti helps her find courage again.</p>
+        <div class="book-meta">
+          <span class="book-age">Ages 3–6</span>
+          <a class="book-link" href="https://www.amazon.co.uk/stores/Annabel-Schi%C3%B8tz/author/B01N9VC7LL" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+      </div>
+
+      <div class="book-card fade-in">
+        <div class="book-number">Troll Stories · Book 4</div>
+        <h3 class="book-title">The Rainbow Cake</h3>
+        <p class="book-desc">Ella and Sophia visit the trolls to bake a cake with Rainbow Duck's egg. But first they must wake Indigo Troll, who only sleeps during the day — and the solution will delight every child.</p>
+        <div class="book-meta">
+          <span class="book-age">Ages 3–6</span>
+          <a class="book-link" href="https://www.amazon.co.uk/dp/1530342104" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+      </div>
+
+      <div class="book-card fade-in">
+        <div class="book-number">Troll Stories · Book 5</div>
+        <h3 class="book-title">Blue Troll and the Manycorns</h3>
+        <p class="book-desc">Blue Troll discovers a family of shining white manycorns — like unicorns, but with five horns. When the mother can't get up, he races to find help before it's too late.</p>
+        <div class="book-meta">
+          <span class="book-age">Ages 2–8</span>
+          <a class="book-link" href="https://www.amazon.co.uk/dp/B07F85MDQ3" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+      </div>
+
+      <div class="book-card fade-in">
+        <div class="book-number">Troll Stories · Book 6</div>
+        <h3 class="book-title">Red Dragon's Golden Egg</h3>
+        <p class="book-desc">A golden egg appears in Besti's garden — and it's hatching a baby dragon! When thieves return to steal it, Besti and the five grandchildren must protect the little one and find its mother.</p>
+        <div class="book-meta">
+          <span class="book-age">Ages 3–5</span>
+          <a class="book-link" href="https://www.amazon.co.uk/dp/B089M6P1F4" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+      </div>
+
+      <div class="book-card fade-in">
+        <div class="book-number">Standalone</div>
+        <h3 class="book-title">Rescue the Manycorn Foals</h3>
+        <p class="book-desc">A new adventure featuring the beloved manycorns — five-horned unicorns from the Norwegian woods — and the brave characters who must come to the rescue of their young.</p>
+        <div class="book-meta">
+          <span class="book-age">Children's</span>
+          <a class="book-link" href="https://www.amazon.co.uk/Rescue-Manycorn-Foals-Annabel-Schi%C3%B8tz/dp/B08F6TXS72" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+      </div>
+
+      <div class="book-card fade-in">
+        <div class="book-number">Collection</div>
+        <h3 class="book-title">Besti and the Trolls</h3>
+        <p class="book-desc">All four original Troll Stories in one volume — perfect for grandparents, parents, and little ones who want to discover the whole world of colourful trolls, granny Besti, and friends.</p>
+        <div class="book-meta">
+          <span class="book-age">Ages 2–6</span>
+          <a class="book-link" href="https://www.amazon.co.uk/dp/B01MTBKIQB" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+      </div>
+
+      <div class="book-card fade-in">
+        <div class="book-number">Rhyming Stories</div>
+        <h3 class="book-title">The Animals' Picnic</h3>
+        <p class="book-desc">A colourful picture book of rhyming stories about ten animal friends. Mouse falls in a hole, Duck feels unwell, Monkey gets lost in the fog, and Tortoise meets an extremely greedy boar.</p>
+        <div class="book-meta">
+          <span class="book-age">Children's</span>
+          <a class="book-link" href="https://www.amazon.co.uk/dp/1702733602" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════ CTA ═══════ -->
+  <section class="footer-cta">
+    <p class="section-label">Support the Author</p>
+    <h2 class="section-title">Bring the Magic Home</h2>
+    <p>
+      Available as paperback and Kindle on Amazon. The perfect bedtime stories for ages 2–8, written with warmth from the Norwegian woods.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.amazon.co.uk/stores/Annabel-Schi%C3%B8tz/author/B01N9VC7LL" target="_blank" rel="noopener">
+        Browse All Books on Amazon
+      </a>
+      <a class="btn btn-secondary" href="http://trollstories.co.uk/" target="_blank" rel="noopener">
+        Visit TrollStories.co.uk
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer-bottom">
+    <p>A fan page celebrating the books of Annabel Schiøtz. Not affiliated with Amazon.</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // stagger cards within the same section
+          const siblings = entry.target.parentElement.querySelectorAll('.fade-in');
+          const index = Array.from(siblings).indexOf(entry.target);
+          entry.target.style.transitionDelay = `${index * 0.08}s`;
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
